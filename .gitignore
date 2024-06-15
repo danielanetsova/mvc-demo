@@ -5,6 +5,8 @@ target/
 !**/src/test/**/target/
 
 src/main/resources/application.properties
+src/main/java/bg/softuni/MVCDemo/controllers/Advices.java
+src/main/java/bg/softuni/MVCDemo/controllers/RestDemoController.java
 
 ### STS ###
 .apt_generated
