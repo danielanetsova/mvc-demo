@@ -1,0 +1,28 @@
+package bg.softuni.MVCDemo.services;
+
+import bg.softuni.MVCDemo.dtos.UserRegisterDto;
+import bg.softuni.MVCDemo.entities.User;
+import bg.softuni.MVCDemo.repositories.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class UserService {
+    private final UserRepository userRepository;
+
+    @Autowired
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    public boolean register(UserRegisterDto registerDto) {
+        boolean exists = userRepository.existsByEmail(registerDto.getEmail());
+
+        if (exists) return false;
+
+        User user = new User(registerDto);
+        this.userRepository.saveAndFlush(user);
+
+        return true;
+    }
+}
