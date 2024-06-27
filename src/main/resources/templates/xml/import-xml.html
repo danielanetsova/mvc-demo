@@ -30,7 +30,8 @@
                             <a class="btn bg-black glow-button mx-5 my-5"th:href="@{/import/employees}">Import Employees</a>
                         </th:block>
                         <th:block th:if="${areImported[0] == true && areImported[1] == true && areImported[2] == true}">
-                            <p class="display-4">All XML files are imported.</p>
+                            <a class="btn bg-black glow-button mx-5 my-5"th:href="@{/export/projects-if-finished}">Export Finished Projects</a>
+                            <a class="btn bg-black glow-button mx-5 my-5"th:href="@{/export/employees-above-25}">Export Employees Above 25 Years Old</a>
                         </th:block>
                     </div>
                 </div>
