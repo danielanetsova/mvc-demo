@@ -2,7 +2,6 @@ package bg.softuni.MVCDemo.entities;
 
 import bg.softuni.MVCDemo.dtos.UserRegisterDto;
 import jakarta.persistence.*;
-import org.hibernate.id.factory.spi.GenerationTypeStrategy;
 
 @Entity
 @Table(name = "users")

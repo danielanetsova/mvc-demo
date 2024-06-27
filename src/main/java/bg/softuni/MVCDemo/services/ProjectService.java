@@ -1,6 +1,5 @@
 package bg.softuni.MVCDemo.services;
 
-import bg.softuni.MVCDemo.dtos.ProjectExportDto;
 import bg.softuni.MVCDemo.dtos.ProjectImportDto;
 import bg.softuni.MVCDemo.dtos.ProjectImportDtoWrapper;
 import bg.softuni.MVCDemo.entities.Company;
