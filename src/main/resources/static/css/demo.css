@@ -9,7 +9,7 @@
 }
 
 .bg-image-home {
-    background-image: url('https://rockresearch.com/wp-content/uploads/2017/11/event_technology.jpg');
+    background-image: url('/images/image.jpeg');
     background-size: cover;
     background-position: center;
 }
