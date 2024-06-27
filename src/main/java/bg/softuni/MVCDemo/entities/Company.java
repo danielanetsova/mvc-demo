@@ -13,5 +13,9 @@ public class Company {
     @Column(nullable = false)
     private String name;
 
+    public Company () {}
 
+    public Company(String name) {
+        this.name = name;
+    }
 }

@@ -1,5 +1,6 @@
 package bg.softuni.MVCDemo.entities;
 
+import bg.softuni.MVCDemo.dtos.EmployeeExportDto;
 import jakarta.persistence.*;
 
 @Entity
@@ -22,5 +23,19 @@ public class Employee {
     @JoinColumn(name = "project_id", nullable = false)
     private Project project;
 
+    public Employee() {}
 
+    public Employee(String firstName, String lastName, Integer age) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
+    }
+
+    public EmployeeExportDto toEmployeeExportDto() {
+        return new EmployeeExportDto(this.firstName, this.lastName, this.age, this.project.getName());
+    }
 }

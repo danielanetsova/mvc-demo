@@ -1,5 +1,5 @@
 package bg.softuni.MVCDemo.entities;
-
+import bg.softuni.MVCDemo.dtos.ProjectExportDto;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
@@ -30,4 +30,26 @@ public class Project {
     @JoinColumn(name = "company_id", referencedColumnName = "id")
     private Company company;
 
+    public Project() {}
+
+    public Project(String name, String description, LocalDate startDate,
+                   Boolean isFinished, BigDecimal payment) {
+        this.name = name;
+        this.description = description;
+        this.date = startDate;
+        this.isFinished = isFinished;
+        this.payment = payment;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
+
+    public ProjectExportDto toProjectExportDto() {
+        return new ProjectExportDto(this.name, this.description, this.payment);
+    }
+
+    public String getName() {
+        return name;
+    }
 }
