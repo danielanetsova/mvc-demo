@@ -29,12 +29,12 @@ public class UsersController {
     }
 
     @PostMapping("/login")
-    public ModelAndView doLogin(@Valid UserLoginDto loginDto, BindingResult bindingResult) {
-        if (loginDto.getUsername().equals("admin") && loginDto.getPassword().equals("secure")) {
+    public ModelAndView doLogin(@Valid UserLoginDto loginDto, BindingResult bindingResult, ModelAndView modelAndView) {
+        boolean login = userService.login(loginDto);
 
-            ModelAndView result = new ModelAndView();
-            result.setViewName("redirect:/home");
-            return result;
+        if (login && !bindingResult.hasErrors() ) {
+            modelAndView.setViewName("redirect:/home");
+            return modelAndView;
         }
 
         List<String> errors = bindingResult
@@ -43,7 +43,6 @@ public class UsersController {
                 .map(error -> error.getObjectName() + " " + error.getDefaultMessage())
                 .toList();
 
-        ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("user/login");
         modelAndView.addObject("errors", errors);
 
@@ -56,14 +55,25 @@ public class UsersController {
     }
 
     @PostMapping("/register")
-    public String doRegister(@Valid UserRegisterDto registerDto) {
+    public ModelAndView doRegister(@Valid UserRegisterDto registerDto, BindingResult bindingResult,
+                                   ModelAndView modelAndView) {
         boolean successfulRegistration = userService.register(registerDto);
 
-        if (successfulRegistration) {
-            return "redirect: /users/login";
+        if (successfulRegistration && !bindingResult.hasErrors()) {
+            modelAndView.setViewName("redirect:/users/login");
+            return modelAndView;
         }
 
-        return "user/register";
+        List<String> errors = bindingResult
+                .getAllErrors()
+                .stream()
+                .map(error -> error.getObjectName() + " " + error.getDefaultMessage())
+                .toList();
+
+        modelAndView.setViewName("user/register");
+        modelAndView.addObject("errors", errors);
+
+        return modelAndView;
     }
 
     @GetMapping("/info/{id}")

@@ -9,15 +9,18 @@ import org.springframework.web.servlet.ModelAndView;
 public class HomeController {
 
     @GetMapping("/")
-    public ModelAndView index() {
-        ModelAndView modelAndView = new ModelAndView();
+    public ModelAndView index(ModelAndView modelAndView) {
         modelAndView.setViewName("index");
-
         return modelAndView;
     }
 
     @GetMapping("/home")
     public String home(@RequestParam(value = "show-ad", required = false) Integer adId) {
         return "home";
+    }
+
+    @GetMapping("/logout")
+    public String logout() {
+        return "index";
     }
 }
