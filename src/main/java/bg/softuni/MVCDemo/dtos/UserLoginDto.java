@@ -3,7 +3,9 @@ package bg.softuni.MVCDemo.dtos;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
-public class UserLoginDto {
+import java.io.Serializable;
+
+public class UserLoginDto implements Serializable {
     @NotNull
     @Size(min = 3)
     private String username;

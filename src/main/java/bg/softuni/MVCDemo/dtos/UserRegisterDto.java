@@ -5,8 +5,11 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
-public class UserRegisterDto {
+import java.io.Serializable;
+
+public class UserRegisterDto implements Serializable {
     @NotBlank
+    @Size(min = 3)
     private String username;
 
     @Size(min = 6)
